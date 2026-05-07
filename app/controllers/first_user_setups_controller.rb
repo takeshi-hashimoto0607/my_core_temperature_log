@@ -9,8 +9,9 @@ class FirstUserSetupsController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to "/login", notice: "初回ユーザーを作成しました。"
+      redirect_to "/login", success: t(".success")
     else
+      flash.now[:danger] = t(".failure")
       render :new, status: :unprocessable_entity
     end
   end

@@ -1,37 +1,29 @@
-<% content_for :title, "初回ユーザー作成" %>
+<% content_for :title, t(".title") %>
 
 <main class="container py-5">
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-5">
-      <h1 class="h3 mb-4">初回ユーザー作成</h1>
+      <h1 class="h3 mb-4"><%= t(".title") %></h1>
 
-      <% if @user.errors.any? %>
-        <div class="alert alert-danger" role="alert">
-          <ul class="mb-0">
-            <% @user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render "shared/error_messages", object: @user %>
 
       <%= form_with model: @user, url: first_user_setup_path, data: { turbo: false } do |form| %>
         <div class="mb-3">
-          <%= form.label :name, "名前 / 担当者名", class: "form-label" %>
+          <%= form.label :name, class: "form-label" %>
           <%= form.text_field :name, class: "form-control", required: true, autofocus: true, autocomplete: "username" %>
         </div>
 
         <div class="mb-3">
-          <%= form.label :password, "パスワード", class: "form-label" %>
+          <%= form.label :password, class: "form-label" %>
           <%= form.password_field :password, class: "form-control", required: true, autocomplete: "new-password" %>
         </div>
 
         <div class="mb-4">
-          <%= form.label :password_confirmation, "パスワード確認", class: "form-label" %>
+          <%= form.label :password_confirmation, class: "form-label" %>
           <%= form.password_field :password_confirmation, class: "form-control", required: true, autocomplete: "new-password" %>
         </div>
 
-        <%= form.submit "作成", class: "btn btn-primary w-100" %>
+        <%= form.submit t(".submit"), class: "btn btn-primary w-100" %>
       <% end %>
     </div>
   </div>

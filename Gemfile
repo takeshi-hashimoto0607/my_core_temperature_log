@@ -19,6 +19,9 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Use Japanese translations for Rails
+gem "rails-i18n"
+
 # Use Sorcery for lightweight authentication
 gem "sorcery"
 # Use Redis adapter to run Action Cable in production
