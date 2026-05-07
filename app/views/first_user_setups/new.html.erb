@@ -1,0 +1,30 @@
+<% content_for :title, t(".title") %>
+
+<main class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+      <h1 class="h3 mb-4"><%= t(".title") %></h1>
+
+      <%= render "shared/error_messages", object: @user %>
+
+      <%= form_with model: @user, url: first_user_setup_path, data: { turbo: false } do |form| %>
+        <div class="mb-3">
+          <%= form.label :name, class: "form-label" %>
+          <%= form.text_field :name, class: "form-control", required: true, autofocus: true, autocomplete: "username" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :password, class: "form-label" %>
+          <%= form.password_field :password, class: "form-control", required: true, autocomplete: "new-password" %>
+        </div>
+
+        <div class="mb-4">
+          <%= form.label :password_confirmation, class: "form-label" %>
+          <%= form.password_field :password_confirmation, class: "form-control", required: true, autocomplete: "new-password" %>
+        </div>
+
+        <%= form.submit t(".submit"), class: "btn btn-primary w-100" %>
+      <% end %>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,17 @@
+ja:
+  helpers:
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新
+  defaults:
+    flash_message:
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成できませんでした"
+  first_user_setups:
+    new:
+      title: 初回ユーザー作成
+      submit: 作成
+    create:
+      success: 初回ユーザーを作成しました
+      failure: 初回ユーザーを作成できませんでした
