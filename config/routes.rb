@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get "login", to: "user_sessions#new"
   post "login", to: "user_sessions#create"
   delete "logout", to: "user_sessions#destroy"
+  get "setup", to: "menus#index"
+  post "setup", to: "menus#create"
 
   root "static_pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
