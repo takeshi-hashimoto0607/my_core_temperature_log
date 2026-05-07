@@ -13,4 +13,8 @@ if Rails.env.development?
     user.password = "password"
     user.password_confirmation = "password"
   end
+
+  Menu.find_or_create_by!(name: "昼食") do |menu|
+    menu.target_temp = 75
+  end
 end

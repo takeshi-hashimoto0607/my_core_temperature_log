@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      menu: メニュー
     attributes:
       user:
         name: 名前 / 担当者名
@@ -9,6 +10,9 @@ ja:
         password_confirmation: パスワード確認
         crypted_password: 暗号化済みパスワード
         salt: ソルト
+      menu:
+        name: メニュー名
+        target_temp: 基準温度
   attributes:
     id: ID
     created_at: 作成日時

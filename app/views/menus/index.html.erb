@@ -1,0 +1,50 @@
+<% content_for(:title, t(".title")) %>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <h1><%= t(".title") %></h1>
+
+      <%= render "shared/error_messages", object: @menu %>
+
+      <%= form_with model: @menu, url: setup_path, data: { turbo: false } do |f| %>
+        <div class="mb-3">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control", autofocus: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :target_temp %>
+          <%= f.number_field :target_temp, class: "form-control" %>
+        </div>
+
+        <%= f.submit t(".submit"), class: "btn btn-primary" %>
+      <% end %>
+
+      <hr>
+
+      <h2 class="h4"><%= t(".menu_list") %></h2>
+
+      <% if @menus.present? %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= Menu.human_attribute_name(:name) %></th>
+              <th><%= Menu.human_attribute_name(:target_temp) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @menus.each do |menu| %>
+              <tr>
+                <td><%= menu.name %></td>
+                <td><%= menu.target_temp %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p><%= t(".no_result") %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

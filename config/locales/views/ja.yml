@@ -8,6 +8,7 @@ ja:
     flash_message:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
+      require_login: ログインしてください
   first_user_setups:
     new:
       title: 初回ユーザー作成
@@ -24,3 +25,12 @@ ja:
       failure: ログインに失敗しました
     destroy:
       success: ログアウトしました
+  menus:
+    index:
+      title: メニュー設定
+      submit: 登録
+      menu_list: 登録済みメニュー
+      no_result: 登録済みメニューがありません
+    create:
+      success: メニューを作成しました
+      failure: メニューを作成できませんでした
