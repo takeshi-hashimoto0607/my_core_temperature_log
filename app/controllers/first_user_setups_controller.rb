@@ -9,7 +9,7 @@ class FirstUserSetupsController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to "/login", success: t(".success")
+      redirect_to login_path, success: t(".success")
     else
       flash.now[:danger] = t(".failure")
       render :new, status: :unprocessable_entity
@@ -19,7 +19,7 @@ class FirstUserSetupsController < ApplicationController
   private
 
   def redirect_if_user_exists
-    redirect_to "/login" if User.exists?
+    redirect_to login_path if User.exists?
   end
 
   def user_params
