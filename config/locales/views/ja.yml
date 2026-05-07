@@ -15,3 +15,12 @@ ja:
     create:
       success: 初回ユーザーを作成しました
       failure: 初回ユーザーを作成できませんでした
+  user_sessions:
+    new:
+      title: ログイン
+      login: ログイン
+    create:
+      success: ログインしました
+      failure: ログインに失敗しました
+    destroy:
+      success: ログアウトしました

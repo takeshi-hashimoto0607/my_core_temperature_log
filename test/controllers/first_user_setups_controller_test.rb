@@ -25,7 +25,7 @@ class FirstUserSetupsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to "/login"
+    assert_redirected_to login_path
     assert_equal "manager", User.last.name
   end
 
@@ -52,6 +52,6 @@ class FirstUserSetupsControllerTest < ActionDispatch::IntegrationTest
 
     get new_first_user_setup_path
 
-    assert_redirected_to "/login"
+    assert_redirected_to login_path
   end
 end

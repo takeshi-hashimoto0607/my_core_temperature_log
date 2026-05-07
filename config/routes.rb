@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resource :first_user_setup, only: %i[new create], path: "first_user_setup"
 
+  get "login", to: "user_sessions#new"
+  post "login", to: "user_sessions#create"
+  delete "logout", to: "user_sessions#destroy"
+
   root "static_pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
