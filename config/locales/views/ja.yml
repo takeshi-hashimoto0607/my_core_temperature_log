@@ -41,6 +41,8 @@ ja:
       target_temp: "基準温度: %{temp}℃以上"
       recent_records: 直近入力
       no_result: 直近入力はありません
+      set_label: "%{set_id}セット目"
+      position_label: "%{position}回目"
     create:
       success: 温度記録を作成しました
       failure: 温度記録を作成できませんでした

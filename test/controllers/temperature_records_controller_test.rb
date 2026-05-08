@@ -7,7 +7,7 @@ class TemperatureRecordsControllerTest < ActionDispatch::IntegrationTest
       password: "password",
       password_confirmation: "password"
     )
-    @menu = Menu.create!(name: "昼食", target_temp: 75)
+    @menu = Menu.create!(name: "野菜炒め", target_temp: 75)
   end
 
   test "redirects to login when not logged in" do
@@ -42,6 +42,24 @@ class TemperatureRecordsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_temperature_record_path(menu_id: @menu.id)
     assert_equal @user, TemperatureRecord.last.user
     assert_equal @menu, TemperatureRecord.last.menu
+    assert_equal 1, TemperatureRecord.last.set_id
+    assert_equal 1, TemperatureRecord.last.position
+  end
+
+  test "shows set id and position in recent records" do
+    login_as(@user)
+    TemperatureRecord.create!(
+      menu: @menu,
+      user: @user,
+      temperature: 80,
+      measured_at: Time.current
+    )
+
+    get new_temperature_record_path(menu_id: @menu.id)
+
+    assert_response :success
+    assert_select "td", text: "1セット目"
+    assert_select "td", text: "1回目"
   end
 
   test "does not create invalid temperature record" do

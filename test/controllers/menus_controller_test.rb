@@ -32,14 +32,14 @@ class MenusControllerTest < ActionDispatch::IntegrationTest
     assert_difference "Menu.count", 1 do
       post setup_path, params: {
         menu: {
-          name: "昼食",
+          name: "野菜炒め",
           target_temp: 75
         }
       }
     end
 
     assert_redirected_to setup_path
-    assert_equal "昼食", Menu.last.name
+    assert_equal "野菜炒め", Menu.last.name
   end
 
   test "does not create invalid menu" do

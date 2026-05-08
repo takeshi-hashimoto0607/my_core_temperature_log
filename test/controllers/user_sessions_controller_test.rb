@@ -39,7 +39,7 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "redirects to root after login when menu exists" do
-    Menu.create!(name: "昼食")
+    Menu.create!(name: "野菜炒め")
 
     post login_path, params: {
       name: @user.name,
@@ -73,7 +73,7 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "redirects to root when logged in user accesses login form" do
-    Menu.create!(name: "昼食")
+    Menu.create!(name: "野菜炒め")
 
     post login_path, params: {
       name: @user.name,
