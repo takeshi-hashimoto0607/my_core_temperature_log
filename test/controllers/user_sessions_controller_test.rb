@@ -24,13 +24,25 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
       password: "password"
     }
 
-    assert_redirected_to root_path
+    assert_redirected_to setup_path
     assert_equal @user.id.to_s, session[:user_id]
   end
 
   test "strips name before login" do
     post login_path, params: {
       name: " #{@user.name} ",
+      password: "password"
+    }
+
+    assert_redirected_to setup_path
+    assert_equal @user.id.to_s, session[:user_id]
+  end
+
+  test "redirects to root after login when menu exists" do
+    Menu.create!(name: "昼食")
+
+    post login_path, params: {
+      name: @user.name,
       password: "password"
     }
 
@@ -61,6 +73,8 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "redirects to root when logged in user accesses login form" do
+    Menu.create!(name: "昼食")
+
     post login_path, params: {
       name: @user.name,
       password: "password"

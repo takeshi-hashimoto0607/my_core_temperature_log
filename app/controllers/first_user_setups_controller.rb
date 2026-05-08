@@ -1,4 +1,6 @@
 class FirstUserSetupsController < ApplicationController
+  skip_before_action :require_login
+
   before_action :redirect_if_user_exists
 
   def new

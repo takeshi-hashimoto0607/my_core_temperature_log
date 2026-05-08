@@ -1,6 +1,4 @@
 class MenusController < ApplicationController
-  before_action :require_login
-
   def index
     @menu = Menu.new(target_temp: 75)
     @menus = Menu.order(:name)
@@ -19,10 +17,6 @@ class MenusController < ApplicationController
   end
 
   private
-
-  def require_login
-    redirect_to login_path, danger: t("defaults.flash_message.require_login") unless logged_in?
-  end
 
   def menu_params
     params.require(:menu).permit(:name, :target_temp)
