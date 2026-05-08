@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  has_many :temperature_records, dependent: :restrict_with_error
+
   before_validation :normalize_name
 
   validates :name, presence: true, uniqueness: true
