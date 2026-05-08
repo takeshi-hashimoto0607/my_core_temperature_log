@@ -35,6 +35,7 @@ class InitialSetupFlowTest < ActionDispatch::IntegrationTest
       password: "password",
       password_confirmation: "password"
     )
+    Menu.create!(name: "昼食")
 
     post login_path, params: {
       name: user.name,

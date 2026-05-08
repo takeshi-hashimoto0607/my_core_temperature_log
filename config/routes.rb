@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get "setup", to: "menus#index"
   post "setup", to: "menus#create"
 
-  root "static_pages#home"
+  resources :temperature_records, only: %i[new create]
+
+  root "temperature_records#new"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -1,0 +1,59 @@
+<% content_for(:title, t(".title")) %>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <h1><%= t(".title") %></h1>
+      <p><%= l Date.current, format: :long %></p>
+
+      <%= render "shared/error_messages", object: @temperature_record %>
+
+      <%= form_with model: @temperature_record, data: { turbo: false } do |f| %>
+        <div class="mb-3">
+          <%= f.label :menu_id %>
+          <%= f.collection_select :menu_id, @menus, :id, :name, { selected: @temperature_record.menu_id }, class: "form-select" %>
+        </div>
+
+        <% if @temperature_record.menu.present? %>
+          <p><%= t(".target_temp", temp: @temperature_record.menu.target_temp) %></p>
+        <% end %>
+
+        <div class="mb-3">
+          <%= f.label :temperature %>
+          <%= f.number_field :temperature, class: "form-control", autofocus: true %>
+        </div>
+
+        <%= f.submit t(".submit"), class: "btn btn-primary" %>
+      <% end %>
+
+      <hr>
+
+      <h2 class="h4"><%= t(".recent_records") %></h2>
+
+      <% if @recent_records.present? %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= TemperatureRecord.human_attribute_name(:menu) %></th>
+              <th><%= TemperatureRecord.human_attribute_name(:temperature) %></th>
+              <th><%= TemperatureRecord.human_attribute_name(:measured_at) %></th>
+              <th><%= TemperatureRecord.human_attribute_name(:user) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recent_records.each do |record| %>
+              <tr>
+                <td><%= record.menu.name %></td>
+                <td><%= record.temperature %></td>
+                <td><%= l record.measured_at, format: :short %></td>
+                <td><%= record.user.name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p><%= t(".no_result") %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
