@@ -1,0 +1,54 @@
+<% content_for(:title, t(".title")) %>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <h1><%= t(".title") %></h1>
+
+      <%= link_to t(".back_to_input"), new_temperature_record_path, class: "btn btn-outline-secondary mb-4" %>
+
+      <%= form_with url: temperature_records_path, method: :get, data: { turbo: false }, class: "mb-4" do |f| %>
+        <div class="row align-items-end">
+          <div class="col-md-4">
+            <%= f.label :date, t(".date"), class: "form-label" %>
+            <%= f.date_field :date, value: @date, class: "form-control" %>
+          </div>
+          <div class="col-md-2 mt-3 mt-md-0">
+            <%= f.submit t(".submit"), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+
+      <h2 class="h4"><%= l @date, format: :long %></h2>
+
+      <% if @temperature_records.present? %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= TemperatureRecord.human_attribute_name(:menu) %></th>
+              <th><%= TemperatureRecord.human_attribute_name(:set_id) %></th>
+              <th><%= TemperatureRecord.human_attribute_name(:position) %></th>
+              <th><%= TemperatureRecord.human_attribute_name(:temperature) %></th>
+              <th><%= TemperatureRecord.human_attribute_name(:measured_at) %></th>
+              <th><%= TemperatureRecord.human_attribute_name(:user) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @temperature_records.each do |record| %>
+              <tr>
+                <td><%= record.menu.name %></td>
+                <td><%= t("temperature_records.new.set_label", set_id: record.set_id) %></td>
+                <td><%= t("temperature_records.new.position_label", position: record.position) %></td>
+                <td><%= record.temperature %></td>
+                <td><%= l record.measured_at, format: :short %></td>
+                <td><%= record.user.name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p><%= t(".no_result") %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
