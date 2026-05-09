@@ -18,7 +18,7 @@ class ProductionCheckTaskTest < ActiveSupport::TestCase
   private
 
   def with_env(values)
-    original_values = values.keys.to_h { |key| [key, ENV[key]] }
+    original_values = values.keys.to_h { |key| [ key, ENV[key] ] }
     values.each { |key, value| ENV[key] = value }
 
     yield
