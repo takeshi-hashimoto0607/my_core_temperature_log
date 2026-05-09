@@ -4,9 +4,12 @@ class TemperatureRecordsController < ApplicationController
 
   def index
     @date = selected_date
-    @temperature_records = TemperatureRecord.includes(:menu, :user)
-                                            .where(measured_at: @date.all_day)
-                                            .order(:measured_at, :id)
+    @temperature_records = records_for(@date)
+  end
+
+  def print
+    @date = selected_date
+    @temperature_records = records_for(@date)
   end
 
   def new
@@ -53,6 +56,12 @@ class TemperatureRecordsController < ApplicationController
     params[:date].present? ? Date.parse(params[:date]) : Date.current
   rescue ArgumentError
     Date.current
+  end
+
+  def records_for(date)
+    TemperatureRecord.includes(:menu, :user)
+                     .where(measured_at: date.all_day)
+                     .order(:measured_at, :id)
   end
 
   def temperature_record_params
