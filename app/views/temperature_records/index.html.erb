@@ -6,6 +6,7 @@
       <h1><%= t(".title") %></h1>
 
       <%= link_to t(".back_to_input"), new_temperature_record_path, class: "btn btn-outline-secondary mb-4" %>
+      <%= link_to t(".print"), print_temperature_records_path(date: @date), class: "btn btn-outline-secondary mb-4" %>
 
       <%= form_with url: temperature_records_path, method: :get, data: { turbo: false }, class: "mb-4" do |f| %>
         <div class="row align-items-end">
