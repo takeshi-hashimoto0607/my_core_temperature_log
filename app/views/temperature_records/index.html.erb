@@ -5,7 +5,7 @@
     <div class="col-12 mx-auto">
       <h1><%= t(".title") %></h1>
 
-      <div class="mb-4">
+      <div class="mb-4 no-print">
         <%= link_to t(".back_to_input"), new_temperature_record_path, class: "btn btn-outline-secondary" %>
         <%= link_to t(".print"), print_temperature_records_path(date: @date), class: "btn btn-outline-secondary" %>
       </div>
