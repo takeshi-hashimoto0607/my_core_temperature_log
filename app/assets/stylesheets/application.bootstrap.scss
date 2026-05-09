@@ -7,9 +7,8 @@
     margin: 12mm;
   }
 
-  .d-print-none,
-  form,
-  button {
+  .no-print,
+  .d-print-none {
     display: none !important;
   }
 
