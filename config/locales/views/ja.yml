@@ -35,9 +35,16 @@ ja:
       success: メニューを作成しました
       failure: メニューを作成できませんでした
   temperature_records:
+    index:
+      title: 温度記録一覧
+      date: 日付
+      submit: 表示
+      no_result: 対象日の記録はありません
+      back_to_input: 温度記録入力へ戻る
     new:
       title: 温度記録入力
       submit: 登録
+      records_list: 記録一覧を見る
       target_temp: "基準温度: %{temp}℃以上"
       recent_records: 直近入力
       no_result: 直近入力はありません

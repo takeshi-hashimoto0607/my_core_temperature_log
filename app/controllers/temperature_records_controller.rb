@@ -2,6 +2,13 @@ class TemperatureRecordsController < ApplicationController
   before_action :redirect_to_setup_if_no_menu
   before_action :set_menus
 
+  def index
+    @date = selected_date
+    @temperature_records = TemperatureRecord.includes(:menu, :user)
+                                            .where(measured_at: @date.all_day)
+                                            .order(:measured_at, :id)
+  end
+
   def new
     @temperature_record = TemperatureRecord.new(menu: selected_menu)
     set_recent_records
@@ -40,6 +47,12 @@ class TemperatureRecordsController < ApplicationController
                                        .where(menu: @selected_menu)
                                        .order(measured_at: :desc)
                                        .limit(3)
+  end
+
+  def selected_date
+    params[:date].present? ? Date.parse(params[:date]) : Date.current
+  rescue ArgumentError
+    Date.current
   end
 
   def temperature_record_params
