@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get "setup", to: "menus#index"
   post "setup", to: "menus#create"
 
-  resources :temperature_records, only: %i[index new create]
+  resources :temperature_records, only: %i[index new create] do
+    collection do
+      get :print
+    end
+  end
 
   root "temperature_records#new"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

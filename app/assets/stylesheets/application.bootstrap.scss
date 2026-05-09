@@ -1,2 +1,32 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  .d-print-none {
+    display: none !important;
+  }
+
+  .print-page {
+    width: 100%;
+  }
+
+  .print-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .print-table th,
+  .print-table td {
+    border: 1px solid #000;
+    padding: 6px;
+  }
+}

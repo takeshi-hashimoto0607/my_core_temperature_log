@@ -51,6 +51,15 @@ class TemperatureRecordsControllerTest < ActionDispatch::IntegrationTest
     assert_select "a", text: "温度記録入力へ戻る"
   end
 
+  test "shows print page link on records list" do
+    login_as(@user)
+
+    get temperature_records_path
+
+    assert_response :success
+    assert_select "a", text: "印刷画面"
+  end
+
   test "shows records by date in chronological order" do
     login_as(@user)
     other_menu = Menu.create!(name: "大根の煮物", target_temp: 75)
@@ -81,6 +90,26 @@ class TemperatureRecordsControllerTest < ActionDispatch::IntegrationTest
     assert_select "td", text: "78", count: 0
     assert_match old_record.menu.name, response.body
     assert_operator response.body.index(old_record.menu.name), :<, response.body.index(new_record.menu.name)
+  end
+
+  test "shows print page by date" do
+    login_as(@user)
+    TemperatureRecord.create!(
+      menu: @menu,
+      user: @user,
+      temperature: 80,
+      measured_at: Time.zone.local(2026, 5, 9, 10, 0, 0)
+    )
+
+    get print_temperature_records_path, params: { date: "2026-05-09" }
+
+    assert_response :success
+    assert_select "h1", text: "温度記録印刷"
+    assert_select "td", text: "野菜炒め"
+    assert_select "td", text: "1セット目"
+    assert_select "td", text: "1回目"
+    assert_select "td", text: "80"
+    assert_select "td", text: "manager"
   end
 
   test "creates temperature record" do

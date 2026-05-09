@@ -41,6 +41,12 @@ ja:
       submit: 表示
       no_result: 対象日の記録はありません
       back_to_input: 温度記録入力へ戻る
+      print: 印刷画面
+    print:
+      title: 温度記録印刷
+      print: 印刷
+      back_to_list: 一覧へ戻る
+      no_result: 対象日の記録はありません
     new:
       title: 温度記録入力
       submit: 登録
