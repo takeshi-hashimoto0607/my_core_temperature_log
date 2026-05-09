@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_05_08_000100) do
+ActiveRecord::Schema[7.2].define(version: 2026_05_09_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_08_000100) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["measured_at"], name: "index_temperature_records_on_measured_at"
+    t.index ["menu_id", "measured_at", "set_id"], name: "idx_on_menu_id_measured_at_set_id_5ecae4b503"
+    t.index ["menu_id", "measured_at"], name: "index_temperature_records_on_menu_id_and_measured_at"
     t.index ["menu_id", "set_id"], name: "index_temperature_records_on_menu_id_and_set_id"
     t.index ["menu_id"], name: "index_temperature_records_on_menu_id"
     t.index ["set_id"], name: "index_temperature_records_on_set_id"

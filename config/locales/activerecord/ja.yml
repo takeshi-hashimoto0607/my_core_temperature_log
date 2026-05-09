@@ -21,8 +21,8 @@ ja:
         user_id: 担当者
         temperature: 温度
         measured_at: 測定時刻
-        set_id: セット番号
-        position: 測定位置
+        set_id: セット
+        position: 回数
   attributes:
     id: ID
     created_at: 作成日時
